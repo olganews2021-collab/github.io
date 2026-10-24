@@ -1,0 +1,389 @@
+/* ==========================================
+   1. БАЗОВЫЕ НАСТРОЙКИ СТРАНИЦЫ И ФОНА
+   ========================================== */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #111111; /* Угольно-черный основной фон */
+    color: #e0ded7; /* Цвет светлого бетона для текстов */
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+}
+
+/* Создаем мягкий фоновый свет за элементами */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at 50% 20%, #252422 0%, #111111 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Главный контейнер-выравниватель */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 60px 20px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1; /* Поднимает контент над фоновым светом */
+    text-align: center;
+}
+
+/* ==========================================
+   2. ЗАГОЛОВКИ И ПОДЗАГОЛОВКИ
+   ========================================== */
+h1 {
+    font-family: 'Oswald', sans-serif; /* Изящный строгий шрифт */
+    font-size: 3.5rem;
+    margin: 0 0 5px 0;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #8a8882;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+    color: #ffffff; /* Белый цвет для отличной читаемости */
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+/* ==========================================
+   3. БЛОК ДИСКОГРАФИИ И КАРТОЧКА АЛЬБОМА
+   ========================================== */
+.releases-section {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 650px;
+}
+
+/* Карточка альбома (Flexbox-контейнер) */
+.album-card {
+    background: #161616;
+    border: 1px solid #252525;
+    padding: 25px;
+    margin-bottom: 15px; /* Уменьшили отступ с 40px до 15px */
+    display: flex;
+    gap: 30px;
+    text-align: left;
+    align-items: center;
+}
+
+.album-media {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Обложка альбома (Жесткий стильный квадрат) */
+.album-cover {
+    width: 280px;
+    height: 280px;
+    border: 2px solid #e0ded7; 
+    object-fit: cover;
+    box-shadow: 10px 10px 0px #222;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.album-cover:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 14px 14px 0px #2a2a2a;
+}
+
+/* Стилизация встроенного плеера под темную тему */
+.music-player {
+    width: 280px;
+    filter: invert(90%) hue-rotate(180deg);
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.music-player:hover {
+    opacity: 1;
+}
+
+/* Блок информации об альбоме (Справа от обложки) */
+.album-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.album-info h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.15rem; /* Уменьшили размер с 1.4rem до 1.15rem, чтобы текст стал аккуратнее */
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    color: #ffffff;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+    
+    /* ДОБАВЛЯЕМ ЭТИ ДВЕ СТРОЧКИ ДЛЯ ИДЕАЛЬНОЙ СТРОКИ: */
+    white-space: nowrap; /* Строго запрещает браузеру переносить текст на новую строку */
+    letter-spacing: 2px; /* Чуть-чуть раздвинем буквы для лучшей читаемости */
+}
+
+
+/* Сетка мини-кнопок для стримингов альбома */
+.album-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 10px;
+}
+
+.btn-mini {
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 8px 10px;
+    border: 1px solid #444;
+    color: #b0aeaf;
+    background: #111;
+    text-align: center;
+    transition: all 0.2s ease;
+
+    /* ДОБАВЛЯЕМ ЭТИ ЧЕТЫРЕ СТРОЧКИ ДЛЯ ИДЕАЛЬНОЙ ЦЕНТРОВКИ: */
+    display: flex;
+    align-items: center;      /* Центрует текст по вертикали */
+    justify-content: center;  /* Центрует текст по горизонтали */
+    min-height: 38px;         /* Задаем фиксированную высоту, чтобы все кнопки были близнецами */
+    box-sizing: border-box;
+}
+/* ==========================================
+/* ==========================================
+   3.5 МИНИМАЛИСТИЧНЫЙ ПРЕСС-РЕЛИЗ (PRESS)
+   ========================================== */
+.press-section {
+    margin: 0; /* Полностью обнулили внешние отступы вокруг строчки */
+    width: 100%;
+    max-width: 650px;
+    text-align: center;
+}
+
+.press-item {
+    text-align: center;
+}
+
+
+/* Скромная интеллигентная ссылка-спойлер */
+.press-item summary {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.95rem; /* Делаем шрифт небольшим */
+    color: #555555; /* Приглушенный серый цвет, как у подвала */
+    cursor: pointer;
+    list-style: none;
+    display: inline-block; /* Чтобы рамка hover не растягивалась на весь экран */
+    letter-spacing: 2px;
+    transition: color 0.2s ease;
+}
+
+/* Добавляем строгую стрелочку перед текстом */
+.press-item summary::before {
+    content: "► ";
+    font-size: 0.75rem;
+    margin-right: 5px;
+    color: #444444;
+}
+
+.press-item summary:hover {
+    color: #ffffff; /* При наведении строчка мягко загорается белым */
+}
+
+/* Меняем стрелочку при раскрытии */
+.press-item[open] summary::before {
+    content: "▼ ";
+}
+
+/* Контейнер с текстом релиза (появляется при клике) */
+.press-text {
+    margin-top: 20px;
+    padding: 25px;
+    background: #161616;
+    border: 1px solid #252525;
+    text-align: left; /* Сам текст релиза при раскрытии останется выровненным по левому краю */
+}
+
+.press-text p {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;         /* Снизили размер с 1.05rem до 1rem, как в песнях */
+    line-height: 1.6;        /* Уменьшили межстрочный интервал с 1.8 до 1.6 */
+    color: #b0aeaf;          /* Сделали цвет идентичным текстам песен */
+    text-transform: none;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    text-align: left;        /* Заменили строгое выравнивание по ширине на естественное левое */
+}
+
+
+.press-text p:last-child {
+    margin-bottom: 0;
+}
+
+.press-text .press-team {
+    margin-top: 25px;
+    border-top: 1px dashed #252525;
+    padding-top: 15px;
+    font-size: 0.95rem;
+    color: #8a8882;
+    font-style: italic;
+}
+
+
+/* ==========================================
+   4. СЕКЦИЯ СООБЩЕСТВ И СОЦСЕТЕЙ (CSS GRID)
+   ========================================== */
+.hub-section {
+    margin-top: 15px; /* Уменьшили отступ с 60px до 15px */
+    width: 100%;
+    max-width: 650px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+}
+
+.grid-item {
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    color: #e0ded7;
+    border: 1px solid #333;
+    padding: 15px;
+    background: #161616;
+    text-align: center;
+    transition: all 0.2s ease;
+    
+    /* ДОБАВЛЯЕМ ЭТУ СТРОЧКУ ДЛЯ СТРАХОВКИ НА ТЕЛЕФОНАХ: */
+    white-space: nowrap; 
+}
+
+
+.grid-item:hover {
+    border-color: #e0ded7;
+    background: #222;
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   5. СЕКЦИЯ ТЕКСТОВ ПЕСЕН (DETAILS / SUMMARY)
+   ========================================== */
+.lyrics-section {
+    margin-top: 60px;
+    width: 100%;
+    max-width: 650px;
+}
+
+.lyrics-item {
+    background: #161616;
+    border: 1px solid #333;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* Заголовок трека */
+.lyrics-item summary {
+    padding: 15px;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    transition: background 0.2s;
+}
+
+.lyrics-item summary::after {
+    content: "+";
+    color: #8a8882;
+}
+
+.lyrics-item summary:hover {
+    background: #222;
+    color: #ffffff;
+}
+
+.lyrics-item[open] summary::after {
+    content: "−";
+}
+
+/* Выпадающий текст песни */
+.lyrics-text {
+    padding: 20px;
+    border-top: 1px solid #333;
+    line-height: 1.6;
+    color: #b0aeaf;
+    font-size: 1rem;
+    background: #111;
+}
+
+/* ==========================================
+   6. АДАПТИВНОСТЬ ПОД МОБИЛЬНЫЕ ТЕЛЕФОНЫ
+   ========================================== */
+@media (max-width: 600px) {
+    .album-card {
+        flex-direction: column; /* Карточка альбома встает вертикально */
+        text-align: center;
+        padding: 15px;
+    }
+    .album-info h3 {
+        text-align: center;
+        margin-top: 15px;
+    }
+    h1 {
+        font-size: 2.5rem; /* Немного уменьшаем заголовок на телефонах */
+    }
+}
+/* ==========================================
+   7. СТИЛИ ДЛЯ ПОДВАЛА (FOOTER)
+   ========================================== */
+footer {
+    margin-top: 100px; /* Делаем большой отступ сверху, чтобы отделить от текстов песен */
+    width: 100%;
+    max-width: 650px;
+    border-top: 1px solid #222; /* Тонкая стильная линия-разделитель */
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Мелкий, аккуратный шрифт для копирайта */
+footer p {
+    font-size: 0.85rem;
+    color: #555555; /* Приглушенный серый цвет, чтобы текст не бросался в глаза */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 5px 0;
+}
+
+/* Чуть выделяем контакты */
+footer .footer-contacts {
+    color: #777777;
+    font-size: 0.8rem;
+}
